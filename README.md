@@ -8,9 +8,9 @@ Gustavo Reginatto e Lucas Schneider Ludwig
 - FIFO (First In, First Out)
 - Random (Substituição aleatória)
 
-# Relatório de Desempenho: Gera estatísticas de hits e misses, incluindo tipos de misses (compulsórios, capacidade e conflito).
+Relatório de Desempenho: Gera estatísticas de hits e misses, incluindo tipos de misses (compulsórios, capacidade e conflito).
 
-# Visualização Gráfica: Possibilidade de gerar um gráfico de pizza mostrando a distribuição de hits e misses.
+Visualização Gráfica: Possibilidade de gerar um gráfico de pizza mostrando a distribuição de hits e misses.
 
 # Dependências
 numpy
