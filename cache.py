@@ -21,7 +21,7 @@ class CacheSimulator:
         self.cache = self.initialize_cache()
         self.replacement_data = self.setup_replacement_data()
         self.addresses = self.read_input_file()
-        self.global_cache_filled = False 
+        self.global_cache_filled = False  
 
     def initialize_cache(self):
         return [[CacheEntry() for _ in range(self.assoc)] for _ in range(self.num_sets)]
@@ -47,7 +47,6 @@ class CacheSimulator:
         return None
 
     def check_global_cache_filled(self):
-        """Verifica se toda a cache está cheia globalmente."""
         self.global_cache_filled = all(
             all(entry.valid for entry in set_entries) for set_entries in self.cache
         )
@@ -78,10 +77,8 @@ class CacheSimulator:
         else:
             self.check_global_cache_filled()
             if self.global_cache_filled:
-                # Se toda a cache está cheia, é miss de capacidade
                 capacity_miss += 1
             else:
-                # Caso contrário, é miss de conflito (cache cheia localmente no conjunto)
                 conflict_miss += 1
             self.apply_replacement_policy(set_index, tag)
         return compulsory_miss, capacity_miss, conflict_miss
@@ -139,16 +136,16 @@ class CacheSimulator:
         labels = ['Hits', 'Compulsórios', 'Capacidade', 'Conflito']
         sizes = [hit_count, miss_type_counts['compulsory'], miss_type_counts['capacity'], miss_type_counts['conflict']]
         colors = ['#66b3ff', '#99ff99', '#ff6666', '#ffcc99']
-        explode = (0.1, 0, 0, 0) 
+        explode = (0.1, 0, 0, 0)  
 
         plt.figure(figsize=(7, 7))
         plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
         plt.title("Distribuição de Hits e Misses")
-        plt.axis('equal') 
+        plt.axis('equal')  
         plt.show()
 
 def main():
-    if len(sys.argv) != 8: 
+    if len(sys.argv) != 8:  
         print("Número incorreto de argumentos. Utilize:")
         print("python cache_simulator.py <num_sets> <block_size> <assoc> <policy> <output_mode> <input_file> <show_graph>")
         exit(1)
@@ -159,7 +156,7 @@ def main():
     policy = sys.argv[4]
     output_mode = int(sys.argv[5])
     input_file = sys.argv[6]
-    show_graph = int(sys.argv[7])  # Novo argumento: 0 para sem gráfico, 1 para com gráfico
+    show_graph = int(sys.argv[7])  
 
     global n_bits_offset, n_bits_index
     n_bits_offset = int(np.log2(block_size))
@@ -169,7 +166,7 @@ def main():
     miss_type_counts, hit_count, total_accesses = cache_sim.simulate_cache()
     cache_sim.generate_report(total_accesses, hit_count, miss_type_counts)
 
-    if show_graph == 1:  # Exibe o gráfico se o argumento for 1
+    if show_graph == 1:  
         cache_sim.generate_graph(miss_type_counts, hit_count, total_accesses)
 
 if __name__ == '__main__':
